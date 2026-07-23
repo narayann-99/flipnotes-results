@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -7,17 +7,28 @@ import Footer from "@/components/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
+
+export const viewport: Viewport = {
+  themeColor: "#08080A",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "FlipNotes Results - AKTU Result Explorer",
   description: "A premium, clean, and organized dashboard to explore your university academic results.",
   metadataBase: new URL("https://results.flipnotes.in"),
+  authors: [{ name: "FlipNotes Team", url: "https://flipnotes.in" }],
+  keywords: ["AKTU Results", "Result Explorer", "FlipNotes", "University Transcript", "CGPA Calculator"],
   openGraph: {
     title: "FlipNotes Results - AKTU Result Explorer",
     description: "View your university results in a beautifully organized dashboard.",
@@ -48,7 +59,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-bg-matte text-text-primary selection:bg-brand-primary/30 selection:text-text-primary noise-bg flex flex-col`}
       >
         {/* Ambient background elements */}
-        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
           {/* Subtle dots grid */}
           <div className="absolute inset-0 dots-grid opacity-60" />
           

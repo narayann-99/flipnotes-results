@@ -11,14 +11,17 @@ interface SemesterCardProps {
   defaultOpen?: boolean;
 }
 
-export default function SemesterCard({ semester, defaultOpen = false }: SemesterCardProps) {
+function SemesterCardComponent({ semester, defaultOpen = false }: SemesterCardProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+  const accordionId = `semester-drawer-${semester.semester}`;
 
   return (
     <div className="glass-card-premium rounded-card overflow-hidden transition-all duration-300 border border-white/[0.06] hover:border-white/[0.1]">
       {/* Header Button trigger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-controls={accordionId}
         className="w-full flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 md:p-6 text-left hover:bg-white/[0.015] transition-colors cursor-pointer outline-none group select-none"
       >
         <div className="flex items-center gap-4">
@@ -64,6 +67,7 @@ export default function SemesterCard({ semester, defaultOpen = false }: Semester
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
+            id={accordionId}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -79,3 +83,5 @@ export default function SemesterCard({ semester, defaultOpen = false }: Semester
     </div>
   );
 }
+
+export default React.memo(SemesterCardComponent);

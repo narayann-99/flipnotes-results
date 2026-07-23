@@ -7,19 +7,19 @@ interface SubjectTableProps {
   subjects: Subject[];
 }
 
-export default function SubjectTable({ subjects }: SubjectTableProps) {
+function SubjectTableComponent({ subjects }: SubjectTableProps) {
   return (
     <div className="w-full overflow-x-auto select-none">
       <table className="w-full border-collapse text-left">
         <thead>
           <tr className="border-b border-white/[0.06] text-[9px] text-text-muted font-mono font-bold uppercase tracking-[0.15em]">
-            <th className="pb-3 px-3">Code</th>
-            <th className="pb-3 px-4">Subject Title</th>
-            <th className="pb-3 px-3 text-center font-mono">Internal</th>
-            <th className="pb-3 px-3 text-center font-mono">External</th>
-            <th className="pb-3 px-3 text-center font-mono">Total</th>
-            <th className="pb-3 px-3 text-center font-mono">Grade</th>
-            <th className="pb-3 px-4 text-right font-mono">Status</th>
+            <th scope="col" className="pb-3 px-3">Code</th>
+            <th scope="col" className="pb-3 px-4">Subject Title</th>
+            <th scope="col" className="pb-3 px-3 text-center font-mono">Internal</th>
+            <th scope="col" className="pb-3 px-3 text-center font-mono">External</th>
+            <th scope="col" className="pb-3 px-3 text-center font-mono">Total</th>
+            <th scope="col" className="pb-3 px-3 text-center font-mono">Grade</th>
+            <th scope="col" className="pb-3 px-4 text-right font-mono">Status</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-white/[0.03] font-sans">
@@ -104,3 +104,5 @@ export default function SubjectTable({ subjects }: SubjectTableProps) {
     </div>
   );
 }
+
+export default React.memo(SubjectTableComponent);
