@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-matte: #08080A;
+  --color-surface: #0E0E12;
+  --color-surface-elevated: #13131A;
+  --color-card-bg: rgba(14, 14, 18, 0.65);
+  --color-card-border: rgba(255, 255, 255, 0.06);
+  --color-brand-primary: #6D5EF8;
+  --color-brand-hover: #5B4CE6;
+  --color-brand-secondary: #8B5CF6;
+  --color-text-primary: #F4F4F5;
+  --color-text-secondary: #9494A3;
+  --color-text-muted: #525262;
+  --color-success: #10B981;
+  --color-error: #F43F5E;
+  --color-warning: #F59E0B;
+  
+  --shadow-premium-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.03);
+  --shadow-premium-md: 0 4px 20px -2px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 1px 0 rgba(255, 255, 255, 0.06);
+  --shadow-premium-lg: 0 24px 48px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.08);
+  --shadow-premium-glow: 0 0 40px -10px rgba(109, 94, 248, 0.35);
+
+  --radius-card: 20px;
+  --radius-button: 14px;
+  --radius-input: 14px;
+  
+  --animate-pulse-glow: pulse-glow 8s infinite ease-in-out;
+  --animate-shimmer: shimmer 2s infinite linear;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1) translate(0px, 0px);
+  }
+  50% {
+    opacity: 0.28;
+    transform: scale(1.08) translate(8px, -8px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Custom CSS-first utilities */
+:root {
+  --background: #08080A;
+  --foreground: #F4F4F5;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -0.012em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08080A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1C1C22;
+  border-radius: 9999px;
+  border: 1px solid #08080A;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2D2D36;
+}
+
+/* Premium utility classes */
+.noise-bg {
+  position: relative;
+}
+
+.noise-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+.dots-grid {
+  background-size: 32px 32px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+.purple-glow {
+  background: radial-gradient(circle 700px at var(--x, 50%) var(--y, 50%), rgba(109, 94, 248, 0.05), transparent 75%);
+}
+
+.glass-card-premium {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0) 100%), rgba(14, 14, 18, 0.75);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.06);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-premium-interactive {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0) 100%), rgba(14, 14, 18, 0.75);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.06);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-premium-interactive:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%), rgba(18, 18, 24, 0.88);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.75), inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.shimmer-bg {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0.02) 75%);
+  background-size: 200% 100%;
+}
+
+/* Custom utilities for printed reports */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .glass-card-premium {
+    background: #ffffff !important;
+    border: 1px solid #e4e4e7 !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+}
