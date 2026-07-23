@@ -99,6 +99,8 @@ export class HttpApiProvider implements ResultProvider {
 
       if (this.apiKey) {
         headers["Authorization"] = `Bearer ${this.apiKey}`;
+        headers["x-api-key"] = this.apiKey;
+        headers["X-AKTU-API-Key"] = this.apiKey;
       }
 
       const response = await fetch(`${this.baseUrl}/api/v1/result/${encodeURIComponent(rollNo)}`, {
